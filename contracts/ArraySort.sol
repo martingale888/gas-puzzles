@@ -2,24 +2,31 @@
 pragma solidity 0.8.15;
 
 contract ArraySort {
-    function sortArray(uint256[] calldata data) external pure returns (uint256[] memory) {
-        uint256 dataLen = data.length;
+    //[2,5,1,6,4,8]
+    //12506
+    //12410
+    //12178
+    function sortArray(uint256[] memory data) external pure returns (uint256[] memory) {
+        //uint256 dataLen = data.length;
 
         // Create 'working' copy
-        uint[] memory _data = new uint256[](dataLen);
-        for (uint256 k = 0; k < _data.length; k++) {
-            _data[k] = data[k];
-        }
-
-        for (uint256 i = 0; i < _data.length; i++) {
-            for (uint256 j = i+1; j < _data.length; j++) {
-                if(_data[i] > _data[j]){
-                    uint256 temp = _data[i];
-                    _data[i] = _data[j];
-                    _data[j] = temp;
+        // uint[] memory _data = new uint256[](dataLen);
+        uint256 length  = data.length;
+        // for (uint256 k = 0; k < length; k++) {
+        //     _data[k] = data[k];
+        // }
+        uint256 _temp;
+        uint256 i;
+        uint256 j;
+        for ( i = 0; i < length; i++) {
+            for ( j = i+1; j < length; j++) {
+                if(data[i] > data[j]){
+                    _temp = data[i];
+                    data[i] = data[j];
+                    data[j] = _temp;
                 }
             }
         }
-        return _data;
+        return data;
     }
 }
